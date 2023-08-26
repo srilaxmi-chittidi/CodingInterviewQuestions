@@ -82,7 +82,7 @@ public class StreamOperations {
 		System.out.println("----------Peek Operation---------");
 		
 		empList.stream()
-			.peek(e->e.salaryIncr(10.0))
+			.peek(x->EmployeeRepo.salaryIncr(x, 10.0))
 			.collect(Collectors.toList())
 			.forEach(System.out::println);;
 	}

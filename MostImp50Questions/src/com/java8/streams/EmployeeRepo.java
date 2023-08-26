@@ -2,7 +2,6 @@ package com.java8.streams;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class EmployeeRepo {
 
@@ -13,6 +12,10 @@ public class EmployeeRepo {
 	public static Employee findById(int id) {
 		List<Employee> empList = employeeDB();
 		return empList.stream().filter(x->x.getEmpId()==id).findAny().get();
+	}
+	public static Employee salaryIncr(Employee emp,double p) {
+		emp.setSalary(emp.getSalary()+(emp.getSalary() * (p/100)));
+		return emp;
 	}
 	public static List<Employee> employeeDB() {
 		List<Employee> empList = new ArrayList<Employee>();
@@ -109,11 +112,5 @@ class Employee{
 		return "Employee [empId=" + empId + ", empName=" + empName + ", age=" + age + ", gender=" + gender + ", salary="
 				+ salary + ", yearOfJoining=" + yearOfJoining + ", dept=" + dept + "]";
 	}
-	public static List<Employee> salaryIncr(double p) {
-		List<Employee> empList = EmployeeRepo.employeeDB();
-		return empList.stream()
-				.peek(x-> x.setSalary
-						(x.getSalary()+(x.getSalary()*(p/100))))
-				.collect(Collectors.toList());
-	}
+	
 }
