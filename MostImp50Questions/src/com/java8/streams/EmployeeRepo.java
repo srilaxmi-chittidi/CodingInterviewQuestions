@@ -2,6 +2,7 @@ package com.java8.streams;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class EmployeeRepo {
 
@@ -41,12 +42,37 @@ public class EmployeeRepo {
 }
 class Employee{
 	private long empId;
+	public void setEmpId(long empId) {
+		this.empId = empId;
+	}
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+	public void setYearOfJoining(long yearOfJoining) {
+		this.yearOfJoining = yearOfJoining;
+	}
+	public void setDept(String dept) {
+		this.dept = dept;
+	}
+
 	private String empName;
 	private int age;
 	private String gender;
 	private double salary;
 	private long yearOfJoining;
 	private String dept;
+	public Employee() {
+		
+	}
 	public Employee(long empId, String empName, int age, String gender, double salary, long yearOfJoining, String dept) {
 		super();
 		this.empId = empId;
@@ -83,6 +109,11 @@ class Employee{
 		return "Employee [empId=" + empId + ", empName=" + empName + ", age=" + age + ", gender=" + gender + ", salary="
 				+ salary + ", yearOfJoining=" + yearOfJoining + ", dept=" + dept + "]";
 	}
-	
-	
+	public static List<Employee> salaryIncr(double p) {
+		List<Employee> empList = EmployeeRepo.employeeDB();
+		return empList.stream()
+				.peek(x-> x.setSalary
+						(x.getSalary()+(x.getSalary()*(p/100))))
+				.collect(Collectors.toList());
+	}
 }
