@@ -5,7 +5,7 @@ import java.util.stream.Stream;
 public class FibonacciSeries {
 
 	public static void main(String[] args) {
-		fibonacci(20);
+		fibonacci(5);
 	}
 	public static void fibonacci(int n) {
 		Stream.iterate(new int[] {0,1}, f-> new int[] {f[1],f[0]+f[1]})
