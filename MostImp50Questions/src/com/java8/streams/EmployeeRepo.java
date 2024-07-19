@@ -6,11 +6,13 @@ import java.util.List;
 public class EmployeeRepo {
 
 	public static void main(String[] args) {
-		System.out.println(findById(107));
+		//System.out.println(findById(107));
+		findById(107);
 	}
 
 	public static Employee findById(int id) {
 		List<Employee> empList = employeeDB();
+		
 		return empList.stream().filter(x->x.getEmpId()==id).findAny().get();
 	}
 	public static Employee salaryIncr(Employee emp,double p) {

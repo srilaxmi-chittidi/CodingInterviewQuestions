@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class StreamOperations {
@@ -19,6 +20,7 @@ public class StreamOperations {
 		System.out.println(empArray.length);
 		faltMapOps();
 		peekOps(empList);
+		stringJoinerEx();
 	}
 
 	public static void mapOps() {
@@ -85,5 +87,10 @@ public class StreamOperations {
 			.peek(x->EmployeeRepo.salaryIncr(x, 10.0))
 			.collect(Collectors.toList())
 			.forEach(System.out::println);;
+	}
+	
+	public static void stringJoinerEx() {
+	     String res = IntStream.of(1,2,3,4,5).mapToObj(String ::valueOf).collect(Collectors.joining(","));
+	     System.out.println(res);
 	}
 }

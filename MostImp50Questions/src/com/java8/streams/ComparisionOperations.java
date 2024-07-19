@@ -23,7 +23,8 @@ public class ComparisionOperations {
 		System.out.println("------------Sorted Demo-----------");		
 
 		List<Employee> emps = empList.stream()
-				.sorted((e1,e2)->e1.getEmpName().compareTo(e2.getEmpName()))
+				//.sorted((e1,e2)->e1.getEmpName().compareTo(e2.getEmpName()))
+				.sorted(Comparator.comparing(Employee::getEmpName))
 				.collect(Collectors.toList());
 		emps.stream().forEach(System.out::println);
 	}
@@ -32,7 +33,8 @@ public class ComparisionOperations {
 		System.out.println("------------Minimum Demo-----------");		
 
 		Employee emp = empList.stream()
-				.min((e1,e2)->e1.getAge()-e2.getAge())
+				//.min((e1,e2)->e1.getAge()-e2.getAge())
+				.min(Comparator.comparing(Employee::getAge))
 				.orElseThrow(NoSuchElementException::new);
 		
 		System.out.println(emp.getAge());
